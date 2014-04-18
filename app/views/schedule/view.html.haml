@@ -1,1 +1,26 @@
-foo
+.row
+  .span12
+    %h3
+      Schedule
+
+.row
+  - days = (Date.today..(Date.today + 7.days))
+  .span12
+    %table.table.table-striped
+      %thead
+        %th
+          - days.each do |day|
+            %th
+              = Date::DAYNAMES[day.wday]
+      %tbody
+        - (9..17).each do |time|
+          %tr
+            %td
+              #{time}:00
+            - days.each do |day|
+              %td
+                - booking = Booking.find_by_day_and_time(day, time)
+                - if booking
+                  = booking.user_id
+                - else
+                  \-
