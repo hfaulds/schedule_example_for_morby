@@ -24,5 +24,17 @@
                   - if booking
                     = booking.user.name
                   - else
-                    %button.btn.btn-success
+                    %button.make-booking.btn.btn-success{day: day, time: time}
                       Available
+
+#make-booking-modal.modal.hide.fade-in
+  .modal-header
+    %h3 Booking
+  .modal-body
+    = form_tag({:controller => 'schedule', :action => 'create'}, :method => :get) do
+      %label
+        %input{type: 'hidden', id: 'day', name: 'day', value: ''}
+        %input{type: 'hidden', id: 'time',  name: 'time', value: ''}
+        Name
+        %input{type: 'text', id: 'user_name', name: 'user_name'}
+      %button.btn.btn-success Book
