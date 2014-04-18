@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418124127) do
+ActiveRecord::Schema.define(version: 20140418125757) do
 
   create_table "bookings", force: true do |t|
     t.date    "day",     null: false
@@ -20,5 +20,9 @@ ActiveRecord::Schema.define(version: 20140418124127) do
   end
 
   add_index "bookings", ["day", "time"], name: "index_bookings_on_day_and_time", unique: true
+
+  create_table "users", force: true do |t|
+    t.string "name", null: false
+  end
 
 end

@@ -11,16 +11,19 @@
         %th
           - days.each do |day|
             %th
-              = Date::DAYNAMES[day.wday]
+              .text-center
+                = Date::DAYNAMES[day.wday]
       %tbody
         - (9..17).each do |time|
           %tr
             %td
               #{time}:00
             - days.each do |day|
+              - booking = Booking.find_by_day_and_time(day, time)
               %td
-                - booking = Booking.find_by_day_and_time(day, time)
-                - if booking
-                  = booking.user_id
-                - else
-                  \-
+                .text-center
+                  - if booking
+                    = booking.user.name
+                  - else
+                    %button.btn.btn-success
+                      Available
